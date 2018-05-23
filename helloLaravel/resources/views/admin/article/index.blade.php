@@ -26,6 +26,7 @@
                                 </div>
                             </div>
                             <a href="{{ url('admin/articles/'.$article->id.'/edit') }}" class="btn btn-success">编辑</a>
+                            <a href="{{ url('article/'. $article->id ) }}" class="btn btn-dark">查看</a>
                             <form action="{{ url('admin/articles/'.$article->id) }}" method="POST" style="display: inline;">
                                 {{--这里laravel的请求处理会要求所有非get或post的请求 都由post处理--}}
                                 {{--等同于<input type="hidden" name="_method" value="DELETE">--}}

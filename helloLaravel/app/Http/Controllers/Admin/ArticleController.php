@@ -12,7 +12,14 @@ class ArticleController extends Controller
     public function index()
     {
         // 更加规范写法->with('Articles'. Article::all())
+
+
+        // 把得到的article分成各种小块
+
         return view('admin/article/index')->withArticles(Article::all());
+
+//        $article = new Article();
+//        return view('admin/article/index')->with('articles', $article->getFiveArticle());
     }
 
     public function create()

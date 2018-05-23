@@ -58,6 +58,19 @@ class Article extends Model
 //        return $this->belongsToMany($this, 'video_hierarchy', 'video_id', 'video_parent_id');
 //    }
 //
+    public function getFiveArticle()
+    {
+        $article = $this->orderBy('id', 'desc')
+                        ->take('5')
+                        ->get();
 
+        return $article;
+    }
 
+    public function test()
+    {
+        $model = \App\Flight::findOrFail(1);
+
+        $model = \App\Flight::where('leg', '>', 100)->findOrFail();
+    }
 }

@@ -11,9 +11,10 @@
 |
 */
 
-//Route::get('/', function () {
+Route::get('/', function () {
 //    return view('welcome');
-//});
+    return redirect('/admin');
+});
 
 //Route::get('/now', function() {
 //    return date('Y-m-d H:i:s');
@@ -40,9 +41,11 @@ Route::group(['middleware' => "auth", 'namespace' => 'Admin', 'prefix' => '/admi
     Route::resource('articles', 'ArticleController');
 });
 
+Route::group(['middleware' => "auth"], function() {
+    Route::get('article/{id}', 'ArticleController@show');
+    Route::resource('comment', 'CommentController');
+});
 // RESTful 资源控制器
 //Route::resource('photo', 'PhotoController');
 
-Route::get('article/{id}', 'ArticleController@show');
-Route::post('comment', 'CommentController@store');
 

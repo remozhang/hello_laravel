@@ -38,7 +38,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li><a class="nav-link" href="{{url('admin/articles')}}">文章管理</a></li>
+                        <li><a class="nav-link" href="{{url('comment')}}">管理评论</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
