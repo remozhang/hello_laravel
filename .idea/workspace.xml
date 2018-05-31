@@ -82,6 +82,9 @@
       <find>'/home'</find>
       <find>App\User</find>
     </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
     <dirStrings>
       <dir>F:\laravel_test\larabbs</dir>
     </dirStrings>
@@ -271,12 +274,12 @@
       <workItem from="1527039869761" duration="18529000" />
       <workItem from="1527125136784" duration="13116000" />
       <workItem from="1527643436850" duration="642000" />
-      <workItem from="1527729322714" duration="1079000" />
+      <workItem from="1527729322714" duration="1754000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170816000" />
+    <option name="totallyTimeSpent" value="171491000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
