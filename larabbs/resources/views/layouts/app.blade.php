@@ -23,6 +23,7 @@
     <div id="app" class="{{route_class()}}-page">
         @include('layouts._header')
         <div class="container">
+            @include('layouts._message')
             {{--加载顶部导航的子模块--}}
             @yield('content')
         </div>
