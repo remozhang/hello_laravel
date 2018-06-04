@@ -9,6 +9,12 @@ use App\Handlers\ImageUploadHandler;
 
 class UsersController extends Controller
 {
+    // middleware 接收2个参数 1.中间件名称 2.要进行过滤的动作，
+    // 通过except方法来设定指定动作不使用Auth中间件进行过滤
+    public function __construct() {
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
     // 由于show()方法传参时声明了类型——Eloquent模型User
     // 对应变量名$user会匹配路由片段中的{user}
     // 这样 Laravel会自动注入与请求URI中传入的ID对应的用户模型实例
