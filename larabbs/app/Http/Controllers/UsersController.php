@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use App\Handlers\ImageUploadHandler;
 
 class UsersController extends Controller
 {
@@ -24,13 +25,22 @@ class UsersController extends Controller
         return View('users.edit', compact('user'));
     }
 
-    public function update(UserRequest $request,  User $user)
+    public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
-//        var_dump($request);
-//        exit;
-        $user->update($request->all());
+//        dd($request->avatar);
+        $data = $request->all();
+        if ($request->avatar) {
+            $result = $uploader->save($request->avatar, 'avatar', $user->id, 362);
+            if ($result) {
+                $data['avatar'] = $result['path'];
+            }
+        }
+
+        $user->update($data);
+
         // 如果表单验证通过，就更新内容，最后跳转到个人页面，并附带成功的消息提醒
         // 这里后半段指的是将“个人资料更新成功”赋值给变量success
-        return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功！');
+        return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功!');
+
     }
 }
