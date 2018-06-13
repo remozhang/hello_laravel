@@ -6,6 +6,8 @@ use App\Models\Topic;
 
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
+// Eloquent 允许我们对定模型进行事件监控， 观察者类l里面的方法名对应监听的事件
+// 每种方法接受model为唯一参数，
 
 class TopicObserver
 {
@@ -17,5 +19,11 @@ class TopicObserver
     public function updating(Topic $topic)
     {
         //
+    }
+
+    public function saving(Topic $topic)
+    {
+        // make_excerpt 是自身定义的方法
+        $topic->excerpt = make_excerpt($topic->body);
     }
 }

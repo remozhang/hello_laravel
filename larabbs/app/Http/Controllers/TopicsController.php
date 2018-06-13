@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
 use App\Models\Category;
+use Auth;
 
 class TopicsController extends Controller
 {
     public function __construct()
     {
+        // 对除了 index 以及 show 以外的方法使用auth中间件进行确认
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
@@ -34,10 +36,16 @@ class TopicsController extends Controller
 		return view('topics.create_and_edit', compact('topic', 'categories'));
 	}
 
-	public function store(TopicRequest $request)
+	// store第二个参数会创建一个空白的$topic实例
+	public function store(TopicRequest $request, Topic $topic)
 	{
-		$topic = Topic::create($request->all());
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
+	    // 获取用户提交的请求中的数据数组， fill方法将传参的数组填充到模型属性中
+	    $topic->fill($request->all());
+	    $topic->user_id = Auth::id();
+        $topic->save();
+        //		$topic = Topic::create($request->all());
+
+        return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
 	}
 
 	public function edit(Topic $topic)
