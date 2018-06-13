@@ -15,6 +15,7 @@
 
     {{--style--}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @yield('style')
 </head>
 <body>
     {{--route_class()是自定义辅助方法， 还需要在helpers.php中添加方法--}}
@@ -32,5 +33,6 @@
 
     {{--script--}}
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('script')
 </body>
 </html>
