@@ -19,6 +19,7 @@ class UserPolicy
         //
     }
 
+    // ? 这里的判断是在哪里进行的？
     // 第一个参数默认为当前登录用户实例， 第二个参数则为要进行授权的用户实例
     public function update(User $currentUser, User $user)
     {

@@ -52,8 +52,10 @@ class TopicsController extends Controller
 
 	public function edit(Topic $topic)
 	{
+	    // 这里是调用policies中的update方法？？？
         $this->authorize('update', $topic);
-		return view('topics.create_and_edit', compact('topic'));
+        $categories = Category::all();
+		return view('topics.create_and_edit', compact('topic', 'categories'));
 	}
 
 	public function update(TopicRequest $request, Topic $topic)
@@ -66,6 +68,7 @@ class TopicsController extends Controller
 
 	public function destroy(Topic $topic)
 	{
+	    // 这里是调用policies中的destroy方法？
 		$this->authorize('destroy', $topic);
 		$topic->delete();
 
