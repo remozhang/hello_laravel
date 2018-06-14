@@ -26,6 +26,7 @@ class TopicsController extends Controller
 		return view('topics.index', compact('topics'));
 	}
 
+	// 这里使用了laravel的隐形路由模型绑定，当请求http://larabbs.test/topics/1时， $topic变量自动解析为1的对象
     public function show(Topic $topic)
     {
         return view('topics.show', compact('topic'));
@@ -46,7 +47,7 @@ class TopicsController extends Controller
         $topic->save();
         //		$topic = Topic::create($request->all());
 
-        return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
+        return redirect()->route('topics.show', $topic->id)->with('message', '创建成功!.');
 	}
 
 	public function edit(Topic $topic)
@@ -60,7 +61,7 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Updated successfully.');
+		return redirect()->route('topics.show', $topic->id)->with('message', '更新成功！');
 	}
 
 	public function destroy(Topic $topic)
@@ -68,7 +69,7 @@ class TopicsController extends Controller
 		$this->authorize('destroy', $topic);
 		$topic->delete();
 
-		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
+		return redirect()->route('topics.index')->with('message', '删除成功！');
 	}
 
 	// laravel 控制器中如果直接返回数组，将会被自动解析成JSON

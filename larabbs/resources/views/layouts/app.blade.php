@@ -12,6 +12,7 @@
 
     {{--@yield('title', 'LaraBBS')继承此模版的页面，如果没有定制title区域的话，使用第二个参数作为标题--}}
     <title>@yield('title', 'laraBBS') - laravel 进阶教程</title>
+    <meta name="description" content="@yield('description', 'LaraBBS 爱好者社区')">
 
     {{--style--}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
