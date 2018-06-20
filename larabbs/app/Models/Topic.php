@@ -18,6 +18,12 @@ class Topic extends Model
         return $this->belongsTo(User::class);
     }
 
+    // 参数 $params 附带URL的参数设定
+    public function link($params = [])
+    {
+        return route('topics.show', array_merge([$this->id, $this->slug], $params));
+    }
+
     /* 这里我们定义了本地作用域，
      * 本地作用域允许我们定义通用的约束集合以便在应用中实现
      * 要定义这样的一个作用域，

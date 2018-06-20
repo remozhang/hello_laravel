@@ -42,7 +42,11 @@ Route::get('/users/{user}', 'UsersController@show')->name('users.show');
 Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
 Route::put('/users/{user}', 'UsersController@update')->name('users.update');
 
-Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+// topic是【隐形路由模型绑定】，将自动注入ID对应的话题实例
+// {slug?} 中的 ? 意味着可选兼容数据库中数据为空的话题数据
+Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 Route::resource('categories', 'CategoriesController', ['only' => 'show']);
 
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
+

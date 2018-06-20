@@ -27,8 +27,17 @@ class TopicsController extends Controller
 	}
 
 	// 这里使用了laravel的隐形路由模型绑定，当请求http://larabbs.test/topics/1时， $topic变量自动解析为1的对象
-    public function show(Topic $topic)
+    public function show(Request $request, Topic $topic)
     {
+        /*
+         * 1. 我们需要访问用户请求的路由参数Slug，在 show()方法中注入 $request
+         * 2. 判断条件: 如果话题的Slug不为空，并且话题Slug不等于请求的路由参数Slug
+         * 3. redirect 301永久重定向到正确的URL上*/
+        // URL 矫正
+        if (!empty($topic->slug) && $topic->slug != $request->slug) {
+            return redirect($topic->link(), 301);
+        }
+
         return view('topics.show', compact('topic'));
     }
 
@@ -47,7 +56,7 @@ class TopicsController extends Controller
         $topic->save();
         //		$topic = Topic::create($request->all());
 
-        return redirect()->route('topics.show', $topic->id)->with('success', '创建成功!.');
+        return redirect()->to($topic->link())->with('success', '创建成功!.');
 	}
 
 	public function edit(Topic $topic)
@@ -63,7 +72,7 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route('topics.show', $topic->id)->with('success', '更新成功！');
+		return redirect()->to($topic->link())->with('success', '更新成功！');
 	}
 
 	public function destroy(Topic $topic)
