@@ -38,6 +38,7 @@ class TopicsController extends Controller
             return redirect($topic->link(), 301);
         }
 
+        // 这段的方法
         return view('topics.show', compact('topic'));
     }
 
