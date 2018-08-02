@@ -67,6 +67,15 @@
 
             </div>
         </div>
+
+        {{--用户回复列表--}}
+        <div class="panel penel-default topic-reply">
+            {{--注意读取时需要使用懒加载来避免N+1问题--}}
+            <div class="panel-body">
+                @include('topic._reply_box', ['topic' => $topic])
+                @include('topic._reply_list', ['replies' => $topic->replies()->with('user')->get()])
+            </div>
+        </div>
     </div>
 </div>
 
