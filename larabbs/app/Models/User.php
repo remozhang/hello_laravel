@@ -10,9 +10,11 @@ class User extends Authenticatable
 {
     // 包含一个可以用来发通知的方法 notify
     use Notifiable {
+//      修改了 内置方法notify的访问权限以及别名,原版方法notify的访问控制没有发生变化
         notify as protected laravelNotify;
     }
 
+    // 这里是谁调用的 看observe中的replyObserve
     public function notify($instance)
     {
         // 如果通知的人是当前用户,就不必通知了
