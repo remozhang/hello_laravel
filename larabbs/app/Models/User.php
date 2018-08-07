@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 use Auth;
 
 class User extends Authenticatable
 {
+    use HasRoles;
     // 包含一个可以用来发通知的方法 notify
     use Notifiable {
 //      修改了 内置方法notify的访问权限以及别名,原版方法notify的访问控制没有发生变化

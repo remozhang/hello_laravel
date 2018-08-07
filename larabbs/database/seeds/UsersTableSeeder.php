@@ -43,10 +43,25 @@ class UsersTableSeeder extends Seeder
 
         // 单独处理第一个用户的数据
         $user = User::find(1);
-        $user->name = 'Summer';
+        $user->name = 'zhanglei';
         $user->email = '814895077@qq.com';
         $user->avatar = 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200';
+        $user->password = '$2y$10$8g4Jnun0wwpjm1S7u1VXzu.HC2X1/DWDcW3Fhh2EHqBVMkkY/rWPW';
+        $user->remember_token = '6bC052FTlRF6QMn0XKVU09F9LSlsBIiwyzAXLiGUOm49digqVhXRCTcZCK3a';
         $user->save();
 
+        // 初始化用户, 将 11 号用户当作站长
+        $user->assignRole('Founder');
+
+        // 将 12 号用户指派为管理员
+        $user = User::find(2);
+        $user->name = 'remo';
+        $user->email = '799649731@qq.com';
+        $user->avatar = 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200';
+        $user->password = '$2y$10$8g4Jnun0wwpjm1S7u1VXzu.HC2X1/DWDcW3Fhh2EHqBVMkkY/rWPW';
+        $user->remember_token = '6bC052FTlRF6QMn0XKVU09F9LSlsBIiwyzAXLiGUOm49digqVhXRCTcZCK3a';
+        $user->save();
+
+        $user->assignRole('Maintainer');
     }
 }
