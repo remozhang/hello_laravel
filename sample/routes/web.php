@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', 'StaticPagesController@home');
-Route::get('/about', 'StaticPagesController@about');
-Route::get('/help', 'StaticPagesController@help');
+Route::get('/', 'StaticPagesController@home')->name('home');
+Route::get('/about', 'StaticPagesController@about')->name('about');
+
+// 这里可以为路由指定名称, 然后前台中的 a 标签可以直接请求路由,在里面添加参数
+Route::get('/help', 'StaticPagesController@help')->name('help');
+Route::get('/signup', 'UsersController@create')->name('signup');
